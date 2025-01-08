@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useUserProfile } from '../hooks';
 import { BackgoundScreen } from '../assets';
@@ -17,9 +16,7 @@ const RankRouter = () => {
     navigate('/');
   };
 
-  
   if (!userInfo) {
-
     return (
       <div
         className="min-h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-1 gap-20 items-center  lg:gap-40 flex-col"

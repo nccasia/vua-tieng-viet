@@ -56,8 +56,9 @@ const PvpScreen = () => {
                 {currentPlayer?.playerName}
               </span>
             </div>
-            <div className="text-3xl font-bold text-purple-400">
-              {currentPlayer?.score}
+            <div className="text-3xl font-bold text-purple-400 gap-2 flex items-center">
+              <span className="text-slate-400 text-xl">Điểm:</span>{' '}
+              {currentPlayer?.score ?? 0}
             </div>
           </div>
         </div>
@@ -83,8 +84,9 @@ const PvpScreen = () => {
             <div className="flex justify-between items-center mb-2">
               <span className="text-slate-400">{opponent?.playerName}</span>
             </div>
-            <div className="text-3xl font-bold text-pink-400">
-              {opponent?.score}
+            <div className="text-3xl font-bold text-pink-400 flex items-center gap-2">
+              <span className="text-slate-400 text-xl">Điểm:</span>{' '}
+              {opponent?.score ?? 0}
             </div>
           </div>
         </div>

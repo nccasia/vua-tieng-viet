@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useRankLogic } from '../../../hooks';
 import { Avatar, BackgoundScreen } from '../../../assets';
 
@@ -13,7 +13,7 @@ const GameOnlineScreen = () => {
     feedback,
     handleCharacterClick,
   } = useRankLogic();
-  console.log('test');
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleOpenMenu = () => setIsMenuOpen(true);

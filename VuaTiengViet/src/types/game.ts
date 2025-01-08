@@ -44,3 +44,6 @@ export interface GameResult {
   playerId: string;
   correctWordIds: Array<string>;
 }
+export interface IWallet {
+  value: number;
+}
