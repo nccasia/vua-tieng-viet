@@ -38,3 +38,9 @@ export interface IUser {
   display_name: string;
   avatar_url: string;
 }
+
+export interface GameResult {
+  gameId: string;
+  playerId: string;
+  correctWordIds: Array<string>;
+}

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-import { GameState, Player } from '../../types';
+import { GameResult, GameState, Player } from '../../types';
 import { GameEvents } from '../../constaints/gameSocket';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -57,6 +57,28 @@ export const useSocket = () => {
         navigate('/');
       }
     });
+    socket.on(GameEvents.CORRECT_WORD, (gameResults: Array<GameResult>) => {
+      if (!gameResults) {
+        return;
+      }
+      const playerResult = Object.values(gameResults).find(
+        (result) => result.playerId === currentPlayer?.id
+      );
+
+      const playerScore = playerResult?.correctWordIds?.length || 0;
+      setCurrentPlayer((prev) => ({
+        ...prev!,
+        score: playerScore,
+      }));
+      const opponentResult = Object.values(gameResults).find(
+        (result) => result.playerId === opponent?.id
+      );
+      const opponentScore = opponentResult?.correctWordIds?.length || 0;
+      setOpponent((prev) => ({
+        ...prev!,
+        score: opponentScore,
+      }));
+    });
 
     socket.on(
       GameEvents.OPPONENT_FOUND,
@@ -97,7 +119,6 @@ export const useSocket = () => {
         isCorrect: boolean;
         letters: Array<{ char: string; isMatched: boolean }>;
       }) => {
-        console.log('data WORD_SUBMIT_RESULT', data);
         if (data.isCorrect) {
           playSound('correctAnswer');
           toast.success('Bạn giải đúng rồi, qua câu khác nhé!');

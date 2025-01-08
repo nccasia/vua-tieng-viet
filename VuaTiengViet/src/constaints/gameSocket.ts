@@ -14,4 +14,5 @@ export const GameEvents = {
   GAME_ERROR: 'gameError',
   STOP_FIND_OPPONENT: 'stopFindOpponent',
   EXIT_GAME: 'exitGame',
+  CORRECT_WORD: "correctWord",
 };

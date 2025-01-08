@@ -2,6 +2,8 @@ export interface Player {
   id: string;
   playerName: string;
   rating?: number;
+  avatar?: string;
+  score?: number;
 }
 
 export interface WordData {

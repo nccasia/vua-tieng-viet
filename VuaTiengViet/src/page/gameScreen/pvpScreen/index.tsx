@@ -26,7 +26,6 @@ const PvpScreen = () => {
     navigate('/game');
   };
 
-
   const handleOpenMenu = () => setIsMenuOpen(true);
   const handleCloseMenu = () => setIsMenuOpen(false);
   return (
@@ -58,7 +57,7 @@ const PvpScreen = () => {
               </span>
             </div>
             <div className="text-3xl font-bold text-purple-400">
-              {gameState.score?.player}
+              {currentPlayer?.score}
             </div>
           </div>
         </div>
@@ -72,12 +71,21 @@ const PvpScreen = () => {
           </div>
         </div>
 
-        <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-slate-400">{opponent?.playerName}</span>
+        <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 flex gap-4">
+          <div className="flex items-center ">
+            <img
+              src={opponent?.avatar}
+              alt=""
+              className="h-16 w-16 rounded-lg"
+            />
           </div>
-          <div className="text-3xl font-bold text-pink-400">
-            {gameState.score?.opponent}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-slate-400">{opponent?.playerName}</span>
+            </div>
+            <div className="text-3xl font-bold text-pink-400">
+              {opponent?.score}
+            </div>
           </div>
         </div>
       </div>

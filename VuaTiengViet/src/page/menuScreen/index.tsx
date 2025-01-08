@@ -51,6 +51,7 @@ const MenuScreen = () => {
       const player = {
         id: userInfo?.id || '',
         playerName: userInfo?.display_name || '',
+        avatar: userInfo?.avatar_url || '',
       };
       joinGame(player);
     }

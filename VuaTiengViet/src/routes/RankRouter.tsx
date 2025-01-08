@@ -19,7 +19,7 @@ const RankRouter = () => {
 
   
   if (!userInfo) {
-    console.log(userInfo);
+
     return (
       <div
         className="min-h-screen bg-gradient-to-b from-sky-400 to-sky-600 flex flex-1 gap-20 items-center  lg:gap-40 flex-col"

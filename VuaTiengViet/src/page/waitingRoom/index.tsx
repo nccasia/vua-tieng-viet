@@ -9,7 +9,6 @@ const WaitingRoom = () => {
   console.log('testw', isOpen);
 
   const { userInfo } = useUserProfile();
-  console.log(userInfo);
 
   // const handleCancelSearch = () => {
   //   navigate('/game');
@@ -54,9 +53,7 @@ const WaitingRoom = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container mx-auto px-8 py-8">
-        {/* Search Bar with Button */}
         <div className="max-w-2xl mx-auto mb-12">
           <div className="flex gap-4">
             <div className="relative flex-1">
@@ -73,7 +70,6 @@ const WaitingRoom = () => {
         </div>
 
         <div className="w-full mx-auto flex   gap-6">
-          {/* Ranked Match Button */}
           <div
             onClick={handleOpenModal}
             className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 hover:scale-105 transition-transform cursor-pointer shadow-lg w-full"
@@ -85,9 +81,9 @@ const WaitingRoom = () => {
             <p className="text-gray-200 mb-6">
               Thi đấu trong các trận xếp hạng để leo lên bảng xếp hạng
             </p>
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-between">
               {/* <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
-                Season 1 Active
+                Token: 1000
               </span> */}
               <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Tìm Trận
@@ -95,19 +91,6 @@ const WaitingRoom = () => {
             </div>
           </div>
         </div>
-
-        {/* Online Players Status */}
-        {/* <div className="max-w-4xl mx-auto mt-8">
-          <div className="bg-slate-700/30 rounded-lg p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-gray-300">254 Players Online</span>
-            </div>
-            <span className="text-gray-400 text-sm">
-              Average Wait Time: 1:30
-            </span>
-          </div>
-        </div> */}
       </div>
       {isOpen && (
         <WaitingModal
