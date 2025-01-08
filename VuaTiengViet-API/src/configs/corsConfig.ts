@@ -6,6 +6,7 @@ export const corsConfig = {
   "http://10.10.21.81:5173",
   "https://10.10.21.81:5173",
   "https://dev-mezon.nccsoft.vn",
+  "https://vua-tieng-viet.nccsoft.vn",
   "https://admin.socket.io"],
   credentials: true,
 };

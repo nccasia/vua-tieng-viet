@@ -60,7 +60,6 @@ class SocketGameService implements ISocketGameService {
         this.onlinePlayers = this.onlinePlayers.filter(
             (player) => player.socketId !== socket.id
         );
-        console.log('Online Players at disconnect: ', this.onlinePlayers);
         const game = this.Games.find((game) =>
             game.players.some((player) => player.id === player.id)
         );
@@ -104,7 +103,6 @@ class SocketGameService implements ISocketGameService {
     };
 
     private onFindOpponent = (socket: Socket) => {
-        console.log('Finding opponent for socket:', socket.id);
         const player = this.onlinePlayers.find(
             (player) => player.socketId === socket.id
         );
@@ -137,14 +135,10 @@ class SocketGameService implements ISocketGameService {
         // Remove from matchmaking queue and update state atomically
         this.matchmakingQueue.delete(socket.id);
         player.isPending = false;
-
-        console.log('Removed from matchmaking queue:', socket.id);
-        console.log('Current queue size:', this.matchmakingQueue.size);
     };
 
     private onGameStart = async (gameId: string) => {
         try {
-            console.log('Game start at: ', new Date().toISOString());
             const game = this.Games.find((game) => game.gameId === gameId);
             if (!game) return;
             const players = game.players.map((player) =>
@@ -191,7 +185,7 @@ class SocketGameService implements ISocketGameService {
                         this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
                             gameId: game.gameId,
                             winner: winner,
-                            message: `${winner.playerName} đã chiến thắng với ${maxCorrectWords} từ đúng!`,
+                            message: `${winner?.playerName} đã chiến thắng với ${maxCorrectWords} từ đúng!`,
                         });
                     } else {
                         this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
@@ -388,8 +382,6 @@ class SocketGameService implements ISocketGameService {
     };
 
     private matchingPlayers = () => {
-        console.log('Running matchmaking at:', new Date().toISOString());
-        console.log('Queue size:', this.matchmakingQueue.size);
 
         if (this.matchmakingQueue.size < 2) return;
 
@@ -440,12 +432,10 @@ class SocketGameService implements ISocketGameService {
                 players: newGame.players,
             });
 
-            console.log('Matched players:', firstSocketId, secondSocketId);
         }
     };
 
     private initScheduler = () => {
-        console.log('Scheduler has been started at: ', new Date().toISOString());
         const INTERVAL_TIME = '*/5 * * * * *';
         // Run the matchingPlayers function every 5 seconds
         schedule.scheduleJob(INTERVAL_TIME, this.matchingPlayers);
