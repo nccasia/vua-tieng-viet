@@ -4,7 +4,7 @@ interface GameSettings {
   volume: number;
   sfxEnabled: boolean;
   isSettingsOpen: boolean;
-  isMusicPlaying: boolean; // Thêm trạng thái nhạc
+  isMusicPlaying: boolean; 
 }
 
 interface GameSettingsContextType {
@@ -20,7 +20,7 @@ const defaultSettings: GameSettings = {
   volume: 5,
   sfxEnabled: true,
   isSettingsOpen: false,
-  isMusicPlaying: true, // Mặc định bật nhạc
+  isMusicPlaying: false,
 };
 
 const GameSettingsContext = createContext<GameSettingsContextType | undefined>(
