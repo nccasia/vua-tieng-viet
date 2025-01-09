@@ -1,4 +1,5 @@
 import Application from '@/app';
+import { GameConstants } from '@/constants/GameConstants';
 import { GameEvents } from '@/constants/GameEvents';
 import { Game } from '@/entities/Game';
 import ISocketGameService from '@/interfaces/ISocketGameService';
@@ -140,7 +141,7 @@ class SocketGameService implements ISocketGameService {
     private onGameStart = async (gameId: string) => {
         try {
             const game = this.Games.find((game) => game.gameId === gameId);
-            if (!game) return;
+            if (!game || game?.isPlaying) return;
             const players = game.players.map((player) =>
                 this.onlinePlayers.find((p) => p.id === player.id)
             );
@@ -198,7 +199,7 @@ class SocketGameService implements ISocketGameService {
 
                 game.isPlaying = false;
                 this.onConfirmGameResult(game.gameId);
-            }, game.gameTime * 1000);
+            }, GameConstants.GAME_TIME * 1000);
         } catch (error) {
             console.log(error);
             this.socketServer.to(gameId).emit(GameEvents.GAME_ERROR, {
@@ -209,7 +210,7 @@ class SocketGameService implements ISocketGameService {
 
     private onWordSubmit = ( data: { gameId: string; wordId: string; letters: Array<string> }, socket: Socket) => {
         try {
-            const game = this.Games.find((game) => game.gameId === data.gameId);
+            const game = this.Games.find((game) => game.gameId === data?.gameId);
             if (!game || game.isFinished) {
                 socket.emit(GameEvents.GAME_ERROR, {
                     message: 'Trò chơi không tồn tại hoặc đã kết thúc',
@@ -431,7 +432,6 @@ class SocketGameService implements ISocketGameService {
                 gameId: newGame.gameId,
                 players: newGame.players,
             });
-
         }
     };
 
