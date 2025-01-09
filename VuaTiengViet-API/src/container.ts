@@ -7,7 +7,6 @@ import {
 import { asClass, createContainer, InjectionMode } from "awilix";
 import "dotenv/config";
 import Application from "./app";
-import { Environments } from "./constants/Environments";
 const container = createContainer({
     injectionMode: InjectionMode.CLASSIC
 });
@@ -16,8 +15,7 @@ const container = createContainer({
 container.register({
     // Register the Services
     Application: asClass(Application).singleton(),
-    PrismaService: process.env.NODE_ENV === Environments.PRODUCTION
-    ? asClass(PrismaService).scoped() : asClass(PrismaService).singleton(),
+    PrismaService: asClass(PrismaService).singleton(),
     // RedisService: asClass(RedisService).singleton(),
     JwtService: asClass(JwtService).singleton(),
     GameService: asClass(GameService).scoped(),
