@@ -89,7 +89,7 @@ const MenuScreen = () => {
         </h1>
         <div className="flex flex-row items-center justify-center gap-10 lg:gap-40 w-full flex-wrap md:flex-nowrap">
           <div
-            className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[300px] lg:h-[200px] rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center  "
+            className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[30%] lg:py-16 rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center  "
             onClick={() => handleNavigatePve('pve')}
             style={{
               WebkitTextStroke: '0.9px black',
@@ -100,7 +100,7 @@ const MenuScreen = () => {
           </div>
           {!userInfo && (
             <div
-              className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[300px] lg:h-[200px] rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center "
+              className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[30%] lg:py-16 rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center "
               onClick={() => handleNavigate('online')}
               style={{
                 WebkitTextStroke: '0.9px black',
@@ -111,7 +111,7 @@ const MenuScreen = () => {
             </div>
           )}
           <div
-            className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[300px] lg:h-[200px] rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center"
+            className="bg-blue-500 cursor-pointer text-white text-4xl md:text-7xl w-[30%] h-[30%] lg:w-[30%] lg:py-16 rounded-2xl border shadow-lg hover:bg-amber-400 items-center flex justify-center"
             onClick={() => handleNavigate('wait')}
             style={{
               WebkitTextStroke: '0.9px black',

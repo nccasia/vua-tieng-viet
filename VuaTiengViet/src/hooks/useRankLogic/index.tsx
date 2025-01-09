@@ -178,7 +178,7 @@ export const useRankLogic = () => {
     checkAnswer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputCharacters]);
-  console.log(gameData);
+
 
   return {
     gameData,

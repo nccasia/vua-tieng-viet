@@ -18,7 +18,7 @@ import {
   TimeIcon,
 } from '../../assets';
 
-interface PlayIconProps {
+export interface PlayIconProps {
   width?: string;
   height?: string;
   className?: string;
