@@ -436,8 +436,8 @@ class SocketGameService implements ISocketGameService {
     };
 
     private initScheduler = () => {
-        const INTERVAL_TIME = '*/5 * * * * *';
-        // Run the matchingPlayers function every 5 seconds
+        const INTERVAL_TIME = '*/3 * * * * *';
+        // Run the matchingPlayers function every 3 seconds
         schedule.scheduleJob(INTERVAL_TIME, this.matchingPlayers);
     };
 }
