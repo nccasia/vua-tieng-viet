@@ -198,7 +198,7 @@ class SocketGameService implements ISocketGameService {
 
                 game.isPlaying = false;
                 this.onConfirmGameResult(game.gameId);
-            }, game.gameTime * 100);
+            }, game.gameTime * 1000);
         } catch (error) {
             console.log(error);
             this.socketServer.to(gameId).emit(GameEvents.GAME_ERROR, {
