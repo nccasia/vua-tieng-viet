@@ -12,7 +12,7 @@ interface GameSettingsContextType {
   updateVolume: (volume: number) => void;
   updateSFX: (enabled: boolean) => void;
   toggleSettings: (isOpen: boolean) => void;
-  toggleMusic: () => void; // Thêm hàm toggle nhạc
+  toggleMusic: () => void; 
   saveSettings: () => void;
 }
 
@@ -20,7 +20,7 @@ const defaultSettings: GameSettings = {
   volume: 5,
   sfxEnabled: true,
   isSettingsOpen: false,
-  isMusicPlaying: false,
+  isMusicPlaying: true,
 };
 
 const GameSettingsContext = createContext<GameSettingsContextType | undefined>(
