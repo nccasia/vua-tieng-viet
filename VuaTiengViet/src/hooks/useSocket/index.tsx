@@ -27,7 +27,7 @@ export const useSocket = () => {
   const { playSound } = useSoundEffects();
   const showWinner = useWinnerModal();
   useEffect(() => {
-    const newSocket = io(import.meta.env.VITE_SOCKET_URL);
+    const newSocket = io(import.meta.env.VITE_API_ENDPOINT);
     setSocket(newSocket);
 
     return () => {
