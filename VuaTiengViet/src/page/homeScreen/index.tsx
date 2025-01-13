@@ -11,9 +11,11 @@ import {
   IconSetting,
   IconsSound,
 } from '../../components/Icons';
+
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { useGameSettings, useUserProfile } from '../../hooks';
+import HomeButton from '../../components/HomeButton';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -86,62 +88,40 @@ const HomeScreen = () => {
         </div>
 
         <div className="grid grid-cols-5 sm:gap-6 gap-1 justify-items-center lg:px-40 ">
-          <div
+          <HomeButton
+            IconComponent={IconPlay}
+            classNameIcon="h-14 w-12"
+            label="Chơi"
             onClick={() => handleNavigate('/game')}
-            className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center "
-          >
-            <button className="w-full flex justify-center flex-1">
-              <IconPlay className="h-[52px] w-[40px] " />
-            </button>
-            <p className=" absolute text-3xl  text-white top-[120px] left-[20%] invisible group-hover/item:visible">
-              Chơi
-            </p>
-          </div>
-          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center  ">
-            <button
-              // onClick={handleNavigate}
-              className="w-full flex justify-center"
-            >
-              <IconReward className="h-[52px]" />
-            </button>
-            <p className=" absolute text-3xl  text-white top-[120px] left-[1%] invisible group-hover/item:visible">
-              Thứ Hạng
-            </p>
-          </div>
-          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center">
-            <button
-              // onClick={handleNavigate}
-              className="w-full flex justify-center"
-            >
-              <IconMedal className="h-[52px]" />
-            </button>
-            <p className=" absolute text-3xl  text-white top-[120px] left-[10%] invisible group-hover/item:visible">
-              Medal
-            </p>
-          </div>
-          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
-            <button
-              onClick={() => toggleSettings(true)}
-              className="w-full flex justify-center"
-            >
-              <IconSetting className="h-[52px] w-[52px]" />
-            </button>
-            <p className=" absolute text-3xl  text-white top-[120px] left-[5%] invisible group-hover/item:visible">
-              Cài Đặt
-            </p>
-          </div>
-          <div className="relative rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400 group/item w-[80%] lg:w-[60%] flex items-center ">
-            <button
-              onClick={() => handleNavigate('/user-profile')}
-              className="w-full flex justify-center py-6"
-            >
-              <IconProfile className="h-[52px] w-10" />
-            </button>
-            <p className=" absolute text-3xl  text-white top-[120px] left-[5%] invisible group-hover/item:visible">
-              Hồ Sơ
-            </p>
-          </div>
+          />
+          <HomeButton
+            classNameIcon="h-14"
+            IconComponent={IconReward}
+            label="Thứ Hạng"
+          />
+          <HomeButton
+            classNameIcon="h-14 w-12"
+            IconComponent={IconMedal}
+            label="Medal"
+          />
+          <HomeButton
+            IconComponent={IconSetting}
+            label="Cài Đặt"
+            classNameIcon="h-14"
+            onClick={() => toggleSettings(true)}
+          />
+          <HomeButton
+            IconComponent={IconProfile}
+            classNameIcon="w-12 h-14"
+            label="Hồ Sơ"
+            onClick={() => handleNavigate('/user-profile')}
+          />
         </div>
+
+       
+      </div>
+      <div className="flex justify-end w-full">
+        version 1.0.1
       </div>
     </div>
   );
