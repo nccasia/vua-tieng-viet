@@ -67,7 +67,7 @@ const HomeScreen = () => {
                   onClick={handleSignIn}
                   className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center flex flex-row gap-4 p-3"
                 >
-                  <IconGame className="h-6 w-6 " />{' '}
+                  <IconGame className="h-6 w-6 " />
                   <p className="text-white">Đăng Nhập</p>
                 </button>
               </div>
