@@ -40,7 +40,6 @@ export const useSocket = () => {
 
     socket.on('connect', () => {
       setIsConnected(true);
-      console.log('Connected to server with ID:', socket.id);
 
       // If there was a pending player, join them after connection
       if (currentPlayer) {
@@ -122,11 +121,9 @@ export const useSocket = () => {
         if (data.isCorrect) {
           playSound('correctAnswer');
           toast.success('Bạn giải đúng rồi, qua câu khác nhé!');
-          console.log('Correct word!');
         } else {
           playSound('wrongAnswer');
           toast.error('Đáp án không đúng, hãy thử lại');
-          console.log('Incorrect word. Try again.');
         }
       }
     );
@@ -134,7 +131,6 @@ export const useSocket = () => {
     socket.on(
       GameEvents.GAME_TIME_END,
       (data: { gameId: string; winner: Player | null; message: string }) => {
-        console.log('Game ended:', data.message);
         toast.info(data.message);
         if (data.winner) {
           playSound(checkUser(data.winner?.id) ? 'winner' : 'lose');
@@ -157,8 +153,7 @@ export const useSocket = () => {
     socket.on(
       GameEvents.GAME_FINISH,
       (data: { gameId: string; winner: Player; message: string }) => {
-        console.log('Game finished:', data);
-
+        console.log('game finish', data);
         showWinner(data.message, 'win');
         toast.success(data.message);
         setGameState((prev) => ({ ...prev, isPlaying: false }));
@@ -197,7 +192,6 @@ export const useSocket = () => {
     if (socket && socket.connected) {
       socket.on('disconnect', () => {
         setIsConnected(false);
-        console.log('Disconnected from server');
       });
     }
   };
@@ -219,7 +213,6 @@ export const useSocket = () => {
     socket.emit(GameEvents.GAME_START, gameId);
   };
   const exitGame = (gameId: string) => {
-    console.log('call rồi');
     if (!socket) return;
     setOpponent(null);
     socket.emit(GameEvents.EXIT_GAME, gameId);
@@ -227,10 +220,8 @@ export const useSocket = () => {
 
   const submitWord = (gameId: string, wordId: string, letters: string[]) => {
     if (!socket) return;
-    console.log('đang submitWord');
 
     socket.emit(GameEvents.WORD_SUBMIT, { gameId, wordId, letters });
-    console.log(gameId, wordId, letters, 'teeee');
   };
 
   const confirmGameResult = (gameId: string) => {

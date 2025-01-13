@@ -25,7 +25,6 @@ const RouteChange = () => {
           return;
         }
 
-        console.log('userData', userData.wallet);
         setUser(userData.user);
         const wallet = JSON.parse(userData.wallet);
         setWallet(wallet);
