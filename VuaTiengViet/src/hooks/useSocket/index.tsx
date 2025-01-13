@@ -153,7 +153,7 @@ export const useSocket = () => {
     socket.on(
       GameEvents.GAME_FINISH,
       (data: { gameId: string; winner: Player; message: string }) => {
-
+        console.log('game finish', data);
         showWinner(data.message, 'win');
         toast.success(data.message);
         setGameState((prev) => ({ ...prev, isPlaying: false }));
