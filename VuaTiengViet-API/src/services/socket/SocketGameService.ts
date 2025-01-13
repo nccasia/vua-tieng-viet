@@ -62,12 +62,12 @@ class SocketGameService implements ISocketGameService {
             (player) => player.socketId !== socket.id
         );
         const game = this.Games.find((game) =>
-            game.players.some((player) => player.id === player.id)
+            game.players.some((p) => p.id === player.id)
         );
         if (!game) return;
-        game.players = game.players.filter((player) => player.id !== player.id);
+        game.players = game.players.filter((p) => p.id !== player.id);
         if (game.players.length === 0) {
-            this.Games = this.Games.filter((game) => game.gameId !== game.gameId);
+            this.Games = this.Games.filter((g) => g.gameId !== game.gameId);
         }
         if (game.players.length === 1) {
             const winner = game.players[0];
@@ -199,7 +199,7 @@ class SocketGameService implements ISocketGameService {
 
                 game.isPlaying = false;
                 this.onConfirmGameResult(game.gameId);
-            }, GameConstants.GAME_TIME * 1000);
+            }, (GameConstants.GAME_TIME + 1) * 1000);
         } catch (error) {
             console.log(error);
             this.socketServer.to(gameId).emit(GameEvents.GAME_ERROR, {
