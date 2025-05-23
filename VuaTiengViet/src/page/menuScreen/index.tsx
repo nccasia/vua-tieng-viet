@@ -85,7 +85,7 @@ const MenuScreen = () => {
             color: 'white',
           }}
         >
-          Vua Tiếng Việt
+          Word Snapping
         </h1>
         <div className="flex flex-row items-center justify-center gap-10 lg:gap-40 w-full flex-wrap md:flex-nowrap">
           <div

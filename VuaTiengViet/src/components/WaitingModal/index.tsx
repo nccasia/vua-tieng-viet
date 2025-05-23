@@ -1,6 +1,6 @@
-import  { useEffect, useState } from 'react';
-import { useSocketContext } from '../../hooks/useSocketContext';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSocketContext } from '../../hooks/useSocketContext';
 
 interface Prop {
   onClose: () => void;
@@ -52,9 +52,9 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
       <div className="max-w-lg w-full bg-slate-800 rounded-xl p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-            Tìm Trận
+            Waiting for Opponent...
           </h1>
-          <p className="text-slate-400"> Số người đang chơi</p>
+          <p className="text-slate-400"> Number of players: </p>
         </div>
 
         <div className="flex items-center gap-4 bg-slate-700/50 rounded-lg p-4 mb-6">
@@ -71,9 +71,9 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
 
         <div className="text-center space-y-4 mb-8">
           <div className="flex justify-center"></div>
-          <div className="text-slate-300">Tìm kiếm trận đấu...</div>
+          <div className="text-slate-300">Finding opponent...</div>
           <div className="text-sm text-slate-400">
-            Đếm xuôi: {formatTime(time)}
+            Time: {formatTime(time)}
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const WaitingModal = ({ onClose, avatar, username }: Prop) => {
             onClick={handleCancel}
             className="bg-red-500/10 hover:bg-red-500/20 text-red-400 px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
           >
-            Hủy Bỏ
+            Cancel
           </button>
         </div>
       </div>

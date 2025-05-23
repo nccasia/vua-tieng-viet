@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { END_POINT } from '../../constaints/endpoint';
 import { useAuth } from '@clerk/clerk-react';
-import { ICharacter, IGameData, ISubmitResponse } from '../../types/game';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { END_POINT } from '../../constaints/endpoint';
+import { ICharacter, IGameData, ISubmitResponse } from '../../types/game';
 import { useSoundEffects } from '../useSoundEffects';
 
 export const useGameLogic = () => {
@@ -112,7 +112,7 @@ export const useGameLogic = () => {
         return;
       }
       setGameData(data);
-      setFeedback('Bạn đi hỏi GPT à? Chơi đàng hoàng nghennn!');
+      setFeedback('Are you use ChatGPT to solve this?');
     };
 
     loadGame();
@@ -175,14 +175,14 @@ export const useGameLogic = () => {
 
     if (result.isCorrect) {
       playSound('correctAnswer');
-      setFeedback('Bạn giải đúng rồi qua câu tiếp nhé.');
+      setFeedback('Congratulation, you are answered correctly');
       const newGame = await fetchNewGame();
       if (newGame?.id) {
         setSearchParams({ gameId: newGame.id });
         setGameData(newGame);
       }
       setTimeout(() => {
-        setFeedback('Thử giải câu này xemm');
+        setFeedback('Try the next one');
       }, 900);
     } else {
       playSound('wrongAnswer');
@@ -191,7 +191,7 @@ export const useGameLogic = () => {
       ).length;
       const wrongCount = result.letters.length - correctCount;
       setFeedback(
-        `Sao bạn dở dữ vậy, có ${correctCount} kí tự đúng và ${wrongCount} kí tự sai`
+        `You have ${correctCount} correct letters and ${wrongCount} wrong letters`
       );
     }
   }, [

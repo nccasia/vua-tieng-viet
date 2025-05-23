@@ -1,6 +1,6 @@
+import { useAuth } from '@clerk/clerk-react';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useAuth } from '@clerk/clerk-react';
 import { BackgoundScreen } from '../assets';
 import { IconExit } from '../components/Icons';
 
@@ -37,7 +37,7 @@ const ProtectedRoute: React.FC = () => {
         </div>
         <div className="flex flex-col gap-10">
           <div className="text-white text-4xl px-10 ">
-            Bạn cần phải login mới chơi được chế độ này!
+            You need to login to access this section
           </div>
           <div className="flex flex-row gap-4 justify-center text-white text-4xl">
             <button

@@ -1,6 +1,6 @@
 import { useClerk, useUser } from '@clerk/clerk-react';
-import { IconExit } from '../../components/Icons';
 import { useNavigate } from 'react-router-dom';
+import { IconExit } from '../../components/Icons';
 import { useUserProfile } from '../../hooks';
 
 const UserProfileScreen = () => {
@@ -34,7 +34,7 @@ const UserProfileScreen = () => {
                 {' '}
                 <div className="flex w-full justify-center text-6xl">
                   {' '}
-                  Bạn chưa đăng nhập
+                  You are not logged in?
                 </div>
               </>
             ) : (
@@ -81,38 +81,6 @@ const UserProfileScreen = () => {
               </div>
             </>
           )}
-
-          {/* {!isSignedIn ? (
-            <>
-              {' '}
-              <div className="flex w-full justify-center text-6xl">
-                {' '}
-                Bạn chưa đăng nhập
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex flex-col items-center text-white gap-4">
-                <img
-                  src={user.imageUrl}
-                  alt="User Avatar"
-                  className="w-32 h-32 rounded-full object-cover mb-4"
-                />
-
-                <div className="text-2xl font-semibold">
-                  {user.firstName} {user.lastName}
-                </div>
-                <div className="hover:bg-orange-400 w-full flex justify-center rounded-lg">
-                  <button
-                    onClick={handleLogout}
-                    className="text-2xl font-semibold p-3 "
-                  >
-                    LogOut
-                  </button>
-                </div>
-              </div>
-            </>
-          )} */}
         </div>
       </div>
     </>

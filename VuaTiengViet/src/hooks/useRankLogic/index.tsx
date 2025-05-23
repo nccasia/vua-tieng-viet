@@ -1,19 +1,19 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { END_POINT } from '../../constaints/endpoint';
 import { useAuth } from '@clerk/clerk-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { END_POINT } from '../../constaints/endpoint';
 import {
   ICharacter,
   IGameCurrentData,
   ISubmitResponse,
 } from '../../types/game';
-import { useNavigate } from 'react-router-dom';
 import { useSoundEffects } from '../useSoundEffects';
 
 export const useRankLogic = () => {
   const { getToken } = useAuth();
   const navigate = useNavigate();
 
-  const [feedback, setFeedback] = useState<string>('Coi bộ khó à nghennn!');
+  const [feedback, setFeedback] = useState<string>('Are you ready?');
   const [listCharacters, setListCharacters] = useState<ICharacter[]>([]);
   const [inputCharacters, setInputCharacters] = useState<(ICharacter | null)[]>(
     []
@@ -95,7 +95,7 @@ export const useRankLogic = () => {
         return;
       }
       setGameData(data);
-      setFeedback('Bạn đi hỏi GPT à? Chơi đàng hoàng nghennn!');
+      setFeedback('Do you use ChatGPT to solve this?');
     };
 
     loadGame();
@@ -157,11 +157,11 @@ export const useRankLogic = () => {
 
     if (result.isCorrect) {
       playSound('correctAnswer');
-      setFeedback('Bạn giải đúng rồi qua câu tiếp nhé.');
+      setFeedback('Congratulation, this is the correct answer');
       const newGame = await fetchCurrentChallenge();
       setGameData(newGame);
       setTimeout(() => {
-        setFeedback('Thử giải câu này xemm');
+        setFeedback('Try the next one');
       }, 900);
     } else {
       playSound('wrongAnswer');
@@ -170,7 +170,7 @@ export const useRankLogic = () => {
       ).length;
       const wrongCount = result.letters.length - correctCount;
       setFeedback(
-        `Sao bạn dở dữ vậy, có ${correctCount} kí tự đúng và ${wrongCount} kí tự sai`
+        `You have ${correctCount} correct letters and ${wrongCount} wrong letters`
       );
     }
   }, [inputCharacters, gameData, submitAnswer, playSound]);
