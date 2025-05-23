@@ -9,7 +9,7 @@ export const useGameLogic = () => {
   const { getToken } = useAuth();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [feedback, setFeedback] = useState<string>('Coi bộ khó à nghennn!');
+  const [feedback, setFeedback] = useState<string>('Are you ready?');
   const [listCharacters, setListCharacters] = useState<ICharacter[]>([]);
   const [inputCharacters, setInputCharacters] = useState<(ICharacter | null)[]>(
     []
