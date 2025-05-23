@@ -3,9 +3,9 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { END_POINT } from '../../constaints/endpoint';
 import {
-  ICharacter,
-  IGameCurrentData,
-  ISubmitResponse,
+    ICharacter,
+    IGameCurrentData,
+    ISubmitResponse,
 } from '../../types/game';
 import { useSoundEffects } from '../useSoundEffects';
 
@@ -95,7 +95,7 @@ export const useRankLogic = () => {
         return;
       }
       setGameData(data);
-      setFeedback('Do you use ChatGPT to solve this?');
+      setFeedback('');
     };
 
     loadGame();
