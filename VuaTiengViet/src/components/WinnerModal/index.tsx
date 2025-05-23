@@ -23,7 +23,7 @@ const WinnerModal = () => {
         </div>
 
         <h2 className="text-2xl font-bold text-center mb-2">
-          {status === 'draw' ? 'Thông báo' : 'Chúc mừng!'}
+          {status === 'draw' ? 'Draw' : 'Congratulations!'}
         </h2>
         <p className="text-xl text-center mb-6">{winner}</p>
 
@@ -31,7 +31,7 @@ const WinnerModal = () => {
           onClick={closeModal}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"
         >
-          Xác nhận
+          OK
         </button>
       </div>
     </div>

@@ -12,10 +12,10 @@ import {
   IconsSound,
 } from '../../components/Icons';
 
-import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
-import { useGameSettings, useUserProfile } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 import HomeButton from '../../components/HomeButton';
+import { useGameSettings, useUserProfile } from '../../hooks';
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ const HomeScreen = () => {
                   className=" rounded-2xl bg-lime-400 border-8 border-white shadow-lg hover:bg-orange-400  items-center flex flex-row gap-4 p-3"
                 >
                   <IconGame className="h-6 w-6 " />
-                  <p className="text-white">Đăng Nhập</p>
+                  <p className="text-white">Sign In</p>
                 </button>
               </div>
             )
@@ -83,7 +83,7 @@ const HomeScreen = () => {
               color: 'white',
             }}
           >
-            Vua Tiếng Việt
+            Word Sniping
           </h1>
         </div>
 
@@ -91,13 +91,13 @@ const HomeScreen = () => {
           <HomeButton
             IconComponent={IconPlay}
             classNameIcon="h-14 w-12"
-            label="Chơi"
+            label="Play"
             onClick={() => handleNavigate('/game')}
           />
           <HomeButton
             classNameIcon="h-14"
             IconComponent={IconReward}
-            label="Thứ Hạng"
+            label="Ranking"
           />
           <HomeButton
             classNameIcon="h-14 w-12"
@@ -106,14 +106,14 @@ const HomeScreen = () => {
           />
           <HomeButton
             IconComponent={IconSetting}
-            label="Cài Đặt"
+            label="Settings"
             classNameIcon="h-14"
             onClick={() => toggleSettings(true)}
           />
           <HomeButton
             IconComponent={IconProfile}
             classNameIcon="w-12 h-14"
-            label="Hồ Sơ"
+            label="Profile"
             onClick={() => handleNavigate('/user-profile')}
           />
         </div>
@@ -121,7 +121,7 @@ const HomeScreen = () => {
        
       </div>
       <div className="flex justify-end w-full">
-        version 1.0.2
+        version 1.2.0
       </div>
     </div>
   );

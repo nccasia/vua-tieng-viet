@@ -1,6 +1,6 @@
-import  { useState } from 'react';
-import { useUserProfile } from '../../hooks';
+import { useState } from 'react';
 import { ButtonExit, IconReward, WaitingModal } from '../../components';
+import { useUserProfile } from '../../hooks';
 
 const WaitingRoom = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -54,12 +54,12 @@ const WaitingRoom = () => {
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="Tìm kiếm người chơi bằng Id..."
+                placeholder="Search..."
                 className="w-full px-6 py-4 bg-slate-700/50 rounded-lg pl-12 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
             </div>
             <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold transition-colors flex items-center gap-2">
-              Tìm kiếm
+              Search something
             </button>
           </div>
         </div>
@@ -70,18 +70,19 @@ const WaitingRoom = () => {
             className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 hover:scale-105 transition-transform cursor-pointer shadow-lg w-full"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold">Tìm Trận</h3>
+              <h3 className="text-2xl font-bold">Find Match</h3>
               <IconReward className="h-8 w-8" />
             </div>
             <p className="text-gray-200 mb-6">
-              Thi đấu trong các trận xếp hạng để leo lên bảng xếp hạng
+              Playing ranked match with other players, earn rewards and
+              improve your skills.
             </p>
             <div className="flex items-center justify-between">
               <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
                 Token: 1000
               </span>
               <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Tìm Trận
+                Find Match
               </button>
             </div>
           </div>

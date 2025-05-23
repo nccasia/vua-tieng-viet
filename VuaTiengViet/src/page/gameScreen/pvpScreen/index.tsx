@@ -1,4 +1,3 @@
-import InputCharacters from '../../../components/InputCharacter';
 import {
   ButtonCharacter,
   ButtonMenu,
@@ -6,12 +5,13 @@ import {
   MenuGame,
   TimeRound,
 } from '../../../components';
+import InputCharacters from '../../../components/InputCharacter';
 import { useUserProfile } from '../../../hooks';
 import { useSocketContext } from '../../../hooks/useSocketContext';
 
-import useGamePvpLogic from '../../../hooks/useGamePvpLogic';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useGamePvpLogic from '../../../hooks/useGamePvpLogic';
 
 const PvpScreen = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const PvpScreen = () => {
       <div className=" mx-auto mb-8">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-clip-text text-transparent  bg-gradient-to-r from-purple-400 to-pink-400">
-            Trận Đấu
+            Match
           </h1>
           <div className="flex items-center gap-2 text-slate-400">
             <GameExitDialog onConfirmExit={handleConfirmExit} />
@@ -57,7 +57,7 @@ const PvpScreen = () => {
               </span>
             </div>
             <div className="text-3xl font-bold text-purple-400 gap-2 flex items-center">
-              <span className="text-slate-400 text-xl">Điểm:</span>{' '}
+              <span className="text-slate-400 text-xl">Score:</span>{' '}
               {currentPlayer?.score ?? 0}
             </div>
           </div>
@@ -65,7 +65,7 @@ const PvpScreen = () => {
 
         <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-slate-400">Thời Gian</span>
+            <span className="text-slate-400">Time</span>
           </div>
           <div className="text-3xl font-bold text-emerald-400">
             <TimeRound time={gameState.timeLeft ?? 180} />
@@ -85,7 +85,7 @@ const PvpScreen = () => {
               <span className="text-slate-400">{opponent?.playerName}</span>
             </div>
             <div className="text-3xl font-bold text-pink-400 flex items-center gap-2">
-              <span className="text-slate-400 text-xl">Điểm:</span>{' '}
+              <span className="text-slate-400 text-xl">Score:</span>{' '}
               {opponent?.score ?? 0}
             </div>
           </div>
@@ -96,7 +96,7 @@ const PvpScreen = () => {
         <div className="bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-700 flex flex-col text-center">
           <div className="text-left mb-6">
             <span className="text-sm font-medium text-slate-400 bg-slate-700 px-3 py-1 rounded-full">
-              Câu hỏi hiện tại
+              Current Challenge
             </span>
           </div>
           <div className="break-words text-3xl  sm:text-4xl lg:text-5xl font-bold tracking-widest font-sans">

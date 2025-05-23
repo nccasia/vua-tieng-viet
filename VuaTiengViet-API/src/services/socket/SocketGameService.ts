@@ -77,7 +77,7 @@ class SocketGameService implements ISocketGameService {
             winnerSocket.emit(GameEvents.GAME_FINISH, {
                 gameId: game.gameId,
                 winner: winner,
-                message: `Đối thủ bỏ cuộc, ${winner.playerName} đã chiến thắng`,
+                message: `Opponent disconnected, ${winner.playerName} wins!`,
             });
             const winnerPlayer = this.onlinePlayers.find(
                 (player) => player.id === winner.id
@@ -117,7 +117,7 @@ class SocketGameService implements ISocketGameService {
 
         if (player.isPlaying) {
             socket.emit(GameEvents.GAME_ERROR, {
-                message: 'Bạn đang chơi ở màn chơi khác',
+                message: 'You are already in a game',
             });
             return;
         }
@@ -163,7 +163,7 @@ class SocketGameService implements ISocketGameService {
                     this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
                         gameId: game.gameId,
                         winner: null,
-                        message: 'Trận đấu kết thúc với kết quả hòa',
+                        message: 'This game has ended in a draw',
                     });
                 } else {
                     const maxCorrectWords = Math.max(
@@ -177,7 +177,7 @@ class SocketGameService implements ISocketGameService {
                         this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
                             gameId: game.gameId,
                             winner: null,
-                            message: `Trận đấu kết thúc với kết quả hòa. Số từ đúng: ${maxCorrectWords}`,
+                            message: `This game has ended in a draw with ${maxCorrectWords} correct words`,
                         });
                     } else if (winnersResults.length === 1) {
                         const winner = game.players.find(
@@ -186,13 +186,13 @@ class SocketGameService implements ISocketGameService {
                         this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
                             gameId: game.gameId,
                             winner: winner,
-                            message: `${winner?.playerName} đã chiến thắng với ${maxCorrectWords} từ đúng!`,
+                            message: `${winner?.playerName} has won the game with ${maxCorrectWords} correct words`,
                         });
                     } else {
                         this.socketServer.to(game.gameId).emit(GameEvents.GAME_TIME_END, {
                             gameId: game.gameId,
                             winner: null,
-                            message: 'Trận đấu kết thúc với kết quả hòa',
+                            message: 'This game has ended in a draw',
                         });
                     }
                 }
@@ -203,7 +203,7 @@ class SocketGameService implements ISocketGameService {
         } catch (error) {
             console.log(error);
             this.socketServer.to(gameId).emit(GameEvents.GAME_ERROR, {
-                message: 'Có lỗi xảy ra trong quá trình xử lý',
+                message: 'An error occurred while starting the game',
             });
         }
     };
@@ -213,7 +213,7 @@ class SocketGameService implements ISocketGameService {
             const game = this.Games.find((game) => game.gameId === data?.gameId);
             if (!game || game.isFinished) {
                 socket.emit(GameEvents.GAME_ERROR, {
-                    message: 'Trò chơi không tồn tại hoặc đã kết thúc',
+                    message: 'Game not found or already finished',
                 });
                 return;
             }
@@ -222,14 +222,14 @@ class SocketGameService implements ISocketGameService {
             );
             if (!player) {
                 socket.emit(GameEvents.GAME_ERROR, {
-                    message: 'Người chơi không tồn tại trong trò chơi',
+                    message: 'Player not found',
                 });
                 return;
             }
             const originWord = game.words.find((word) => word.id === data.wordId);
             if (!originWord) {
                 socket.emit(GameEvents.GAME_ERROR, {
-                    message: 'Từ không tồn tại',
+                    message: 'Word not found',
                 });
                 return;
             }
@@ -271,7 +271,7 @@ class SocketGameService implements ISocketGameService {
                 this.socketServer.to(game.gameId).emit(GameEvents.GAME_FINISH, {
                     gameId: game.gameId,
                     winner: player,
-                    message: `${player.playerName} đã chiến thắng`,
+                    message: `${player.playerName} won the game!`,
                 });
                 this.onConfirmGameResult(game.gameId);
                 return;
@@ -293,7 +293,7 @@ class SocketGameService implements ISocketGameService {
         } catch (error) {
             console.log(error);
             socket.emit(GameEvents.GAME_ERROR, {
-                message: 'Có lỗi xảy ra trong quá trình xử lý',
+                message: 'An error occurred while submitting the word',
             });
         }
     };
@@ -307,7 +307,7 @@ class SocketGameService implements ISocketGameService {
             player.isPlaying = false;
             if (!game) {
                 socket.emit(GameEvents.GAME_ERROR, {
-                    message: 'Trò chơi không tồn tại',
+                    message: 'Game not found',
                 });
                 return;
             }
@@ -316,7 +316,7 @@ class SocketGameService implements ISocketGameService {
             );
             if (!gamePlayer) {
                 socket.emit(GameEvents.GAME_ERROR, {
-                    message: 'Người chơi không tồn tại',
+                    message: 'Player not found in game',
                 });
                 return;
             }
@@ -334,7 +334,7 @@ class SocketGameService implements ISocketGameService {
                 winnerSocket.emit(GameEvents.GAME_FINISH, {
                     gameId: game.gameId,
                     winner: winner,
-                    message: `Đối thủ bỏ cuộc, ${winner.playerName} đã chiến thắng`,
+                    message: `Opponent disconnected, ${winner.playerName} wins!`,
                 });
                 const winnerPlayer = this.onlinePlayers.find(
                     (player) => player.id === winner.id
@@ -349,7 +349,7 @@ class SocketGameService implements ISocketGameService {
             console.log(error);
             socket.leave(gameId);
             socket.emit(GameEvents.GAME_ERROR, {
-                message: 'Có lỗi xảy ra trong quá trình xử lý',
+                message: 'An error occurred while exiting the game',
             });
         }
     };

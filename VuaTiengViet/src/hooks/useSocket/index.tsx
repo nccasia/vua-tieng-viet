@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-import { GameResult, GameState, Player } from '../../types';
-import { GameEvents } from '../../constaints/gameSocket';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useWinnerModal } from '../useWinnerModal';
-import { useUserProfile } from '../useUserProfile';
+import { toast } from 'react-toastify';
+import { GameEvents } from '../../constaints/gameSocket';
+import { GameResult, GameState, Player } from '../../types';
 import { useSoundEffects } from '../useSoundEffects';
+import { useUserProfile } from '../useUserProfile';
+import { useWinnerModal } from '../useWinnerModal';
 
 export const useSocket = () => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export const useSocket = () => {
       if (reason === 'io client disconnect') {
         console.log(' disconnected manually.');
       } else {
-        toast.error('Bị mất kết nối rồiiii!');
+        toast.error('Disconnected from server. Please try again.');
         navigate('/');
       }
     });
@@ -120,10 +120,10 @@ export const useSocket = () => {
       }) => {
         if (data.isCorrect) {
           playSound('correctAnswer');
-          toast.success('Bạn giải đúng rồi, qua câu khác nhé!');
+          toast.success('You answered correctly, try the next one');
         } else {
           playSound('wrongAnswer');
-          toast.error('Đáp án không đúng, hãy thử lại');
+          toast.error('It is not correct, try again');
         }
       }
     );
@@ -140,9 +140,9 @@ export const useSocket = () => {
         showWinner(
           data.winner
             ? checkUser(data.winner?.id)
-              ? 'Bạn đã chiến thắng trận đấu này'
-              : `Bạn đã thua cuộc`
-            : 'Trận này hòa',
+              ? 'You win'
+              : 'You lose'
+            : 'Draw match',
           data.winner ? (checkUser(data.winner?.id) ? 'win' : 'draw') : 'draw'
         );
         setOpponent(null);
